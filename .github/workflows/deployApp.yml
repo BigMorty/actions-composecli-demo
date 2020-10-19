@@ -24,12 +24,12 @@ jobs:
         run: |
           cat "$GITHUB_WORKSPACE/cloud.env" | awk -F = 'NF == 2 {print $0}' | xargs -L 1 echo >> $GITHUB_ENV
 
-#      - name: Verify cloud.env file was updated
-#        run: |
-#          if [[ "$REGISTRY_NAME" -eq 'your-registry-name' ]]; then
-#            echo 'Error: cloud.env file was not updated'
-#            exit 1
-#          fi
+      - name: Verify cloud.env file was updated
+        run: |
+          if [[ "$REGISTRY_NAME" = 'your-registry-name' ]]; then
+            echo 'Error: cloud.env file was not updated'
+            exit 1
+          fi
 
       - name: Azure Login
         uses: azure/login@v1

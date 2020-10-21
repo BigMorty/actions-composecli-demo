@@ -6,8 +6,14 @@
 
 name: DeployApp
 
+
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["BuildImage"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
   main:
